@@ -16,7 +16,7 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_OPENMP()
 
 AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
-
+AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
 
 AM_PATH_PYTHON
 AX_PYTHON_DEVEL
@@ -172,10 +172,7 @@ if test "$with_po" = "yes"; then
 	AC_PATH_PROG(MSGINIT, msginit)
 	AC_PATH_PROG(MSGMERGE, msgmerge)
 	AC_PATH_PROG(MSGUNIQ, msguniq)
-	AC_PATH_PROG(XGETTEXT, xgettext)
-	if test -z "$MSGINIT" -o -z "$MSGMERGE" -o -z "$MSGUNIQ" -o -z "$XGETTEXT"; then
-		AC_MSG_ERROR([Could not find required gettext tools])
-        fi
+	
 fi
 AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
@@ -345,8 +342,6 @@ lib/python/Plugins/SystemPlugins/AudioEffect/Makefile
 lib/python/Plugins/SystemPlugins/AudioEffect/meta/Makefile
 lib/python/Tools/Makefile
 lib/python/Blackhole/Makefile
-lib/service/Makefile
-lib/Tools/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile
